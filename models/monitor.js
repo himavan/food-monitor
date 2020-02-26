@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const monitorSchema = new mongoose.Schema({
-    humidity: {
+    count: {
+        type:String
+    },
+    humidity:{
         type:String
     },
     temperature:{
@@ -11,13 +14,7 @@ const monitorSchema = new mongoose.Schema({
     analog1:{
         type:String
     },
-    alcohol_ppm:{
-        type:String
-    },
     analog2:{
-        type:String
-    },
-    methane_ppm:{
         type:String
     },
     camera_state:{
@@ -29,13 +26,12 @@ const Monitor = mongoose.model('Monitor', monitorSchema);
 
 function validateMonitor(monitor) {
     const schema = {
-        humidity: Joi.string().min(0).max(50).required(),
-        temperature: Joi.string().min(0).max(255).required(),
-        analog1: Joi.string().min(0).max(255).required(),
-        alcohol_ppm: Joi.string().min(0).max(255).required(),
-        analog2: Joi.string().min(0).max(255).required(),
-        methane_ppm: Joi.string().min(0).max(255).required(),
-        camera_state: Joi.string().min(0).max(255).required(),
+        count: Joi.string().required(),
+        humidity: Joi.string().required(),
+        temperature: Joi.string().required(),
+        analog1: Joi.string().required(),
+        analog2: Joi.string().required(),
+        camera_state: Joi.string().required(),
        
     };
     return Joi.validate(monitor, schema);

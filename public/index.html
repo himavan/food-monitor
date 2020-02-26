@@ -1,197 +1,121 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Food Monitoring App API</title>
-    <link rel="shortcut icon" href="images/favicon.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script defer src="script.js"></script>
-    <style>
-        #view-source {
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 40px;
-      margin-bottom: 40px;
-      z-index: 900;
-    }
-    </style>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>Food Monitoring App API</title>
+  <link rel="shortcut icon" href="images/favicon.png">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script defer src="script.js"></script>
 </head>
+
 <body>
-    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-        <header class="demo-header mdl-layout__header mdl-color--white mdl-color-text--grey-600">
-            <div class="mdl-layout__header-row">
-                <div class="mdl-layout-title" style="font-weight: 300; color: black">Food Monitoring App API Guide</div>
-                <div class="mdl-layout-spacer"></div>
-                <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                        <i class="material-icons">search</i>
-                    </label>
-                    <div class="mdl-textfield__expandable-holder">
-                        <input class="mdl-textfield__input" type="text" id="search">
-                        <label class="mdl-textfield__label" for="search">Enter your query...</label>
-                    </div>
-                </div> -->
+  <!-- Square card -->
+  <style>
+    body{
+      background: rgb(0, 0, 0,.1);
+    }
+    .demo-card-square.mdl-card {
+      /* width: 300px;
+      height: 300px; */
+      background: white;
+      height: 206px;
+    }
+
+    .demo-card-square>.mdl-card__title {
+      color: #fff;
+      /* background: #46B6AC; */
+    }
+
+    #fresh {
+      background: green;
+    }
+
+    #spoiled {
+      background: Red;
+      display: none;
+    }
+
+    .demo-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%)
+    }
+  </style>
+  <div>
+    <div class="demo-container">
+      <div class="mdl-shadow--2dp" style="padding:20px; margin: 10px 0px;  background: white;">
+        <h4 style="margin: 0px; text-align: center;font-weight: 300;">Food Monitoring App</h4>
+      </div>
+      <div style="display: flex;">
+        <div>
+          <div id="fresh" class="demo-card-square mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title mdl-card--expand">
+              <h2 id="status" class="mdl-card__title-text">Food is Fresh</h2>
             </div>
-        </header>
-        <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-            <header class="demo-drawer-header">
-                <div class="mdl-layout-spacer" style="height:64px"></div>
-            </header>
-            <nav class="demo-navigation mdl-navigation">
-                <a class="mdl-navigation__link btn" href="#intro">Food Monitoring</a>
-                <a class="mdl-navigation__link btn" href="#auth">Authentication</a>
-            </nav>
+          </div>
+  
+          <div id="spoiled" class="demo-card-square mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title mdl-card--expand">
+              <h2 id="status" class="mdl-card__title-text">Food is Spoiled</h2>
+            </div>
+          </div>
         </div>
-        <main class="mdl-layout__content mdl-color--grey-100">
-            <div class="mdl-grid">
-                <div id="intro" class="mdl-shadow--4dp" style="width:100%">
-                    <h3 class="mdl-grid">Introduction</h3>
-                    <div class="mdl-grid">This API is used for Food Monitoring Application.</div>
-                </div>
-                <div id="auth" class="mdl-shadow--4dp " style="width:100%">
-                    <div class="tab">
-                        <button class="tablinks" onclick="openApi(event, 'user1','auth')" id="userOpen">Add New Monitored Values</button>
-                        <button class="tablinks" onclick="openApi(event, 'user2','auth')">Get All Monitored values</button>
-                    </div>
-                    <div id="user1" class="tabcontent">
-                        <h3 class="mdl-grid">Register User</h3>
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                <div>
-                                    <span>HTTP Method:</span> <span class="method">POST</span>
-                                </div>
-                                <div>
-                                    <span>HTTP Request:</span>
-                                    <span class="mdl-chip">
-                                        <span class="mdl-chip__text">/api/monitor/</span>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span>Description: </span>
-                                    <span>To add new food monitored value.</span>
-                                </div>
-                            </div>
-                            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                <div> <span>Request Headers:</span>
-                                    <div class="code">
-                                        <pre></pre>
-                                        <span>Content-Type : </span><span>application/json</span><br>
-                                        <span>Authentication </span><span>Not Required</span>
-                                        </pre>
-                                    </div>
-                                </div>
-                                <div> <span>Request Parameters:</span>
-                                    <div class="code">
-                                        <pre></pre>
-                                        <span></span>
-                                        <span>No request parameter required</span>
-                                        </pre>
-                                    </div>
-                                </div>
-                                <div> <span>Request Body:</span>
-                                    <div class="code">
-                                        <pre><code>
-    { 
-        "humidity":"String",
-        "temperature":"String",
-        "analog1":"String",
-        "alcohol_ppm":"String",
-        "analog2":"String",
-        "methane_ppm": "String",
-        "camera_state":"String"
-    }</code></pre>
-                                    </div>
-                                </div>
-                                <div> <span>Response:</span>
-                                    <div class="code">
-                                        <pre><code>
-    { 
-        "humidity":"String",
-        "temperature":"String",
-        "analog1":"String",
-        "alcohol_ppm":"String",
-        "analog2":"String",
-        "methane_ppm": "String",
-        "camera_state":"String"
-    }</code></pre>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="user2" class="tabcontent">
-                        <h3 class="mdl-grid">Log User</h3>
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                <div>
-                                    <span>HTTP Method:</span> <span class="method">GET</span>
-                                </div>
-                                <div>
-                                    <span>HTTP Request:</span>
-                                    <span class="mdl-chip">
-                                        <span class="mdl-chip__text">/api/monitor/</span>
-                                    </span>
-                                </div>
-                                <div>
-                                    <span>Description: </span>
-                                    <span>To get all the food monitored values</span>
-                                </div>
-                            </div>
-                            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-                                <div> <span>Request Headers:</span>
-                                    <div class="code">
-                                        <pre></pre>
-                                        <span>Content-Type : </span><span>application/json</span><br>
-                                        <span>Authentication : </span><span>Not Required</span>
-                                        </pre>
-                                    </div>
-                                </div>
-                                <div> <span>Request Parameters:</span>
-                                    <div class="code">
-                                        <pre></pre>
-                                        <span></span>
-                                        <span>No request parameter required</span>
-                                        </pre>
-                                    </div>
-                                </div>
-                                <div> <span>Request Body:</span>
-                                    <div class="code">
-                                        <pre>Not Required</pre>
-                                    </div>
-                                </div>
-                                <div> <span>Response:</span>
-                                    <div class="code">
-                                        <p>Array of monitored values</p>
-                                        <pre><code>
-    [
-        {
-            "_id":"ObjectID", 
-            "humidity":"String",
-            "temperature": "String",
-            "analog1": "String",
-            "alcohol_ppm":"String",
-            "analog2": "String", 
-            "methane_ppm": "String",
-            camera_state,"String"
-        }
-    ]</code></pre>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+        <div>
+          <div class="mdl-shadow--2dp" style="padding:10px; margin: 0 0 10px 10px; background: white;">
+            <p style="margin: 0px; ">Humidity: <span id="humidity"></span></p>
+          </div>
+          <div class="mdl-shadow--2dp" style="padding:10px; margin: 0 0 10px 10px;  background: white;">
+            <p style="margin: 0px; ">Temperature: <span id="temp"></span></p>
+          </div>
+          <div class="mdl-shadow--2dp" style="padding:10px; margin: 0 0 10px 10px;  background: white;">
+            <p style="margin: 0px; ">Ethanol: <span id="ethanol"></span></p>
+          </div>
+          <div class="mdl-shadow--2dp" style="padding:10px; margin: 0 0 10px 10px; background: white;">
+            <p style="margin: 0px; ">Methane: <span id="methane"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="mdl-shadow--2dp" style="padding:10px; background: white;">
+        <p style="margin: 0px; ">Camera State: <span id="cam"></span></p>
+      </div>
+
     </div>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    setInterval(function () {
+      $.ajax({
+        type: "get",
+        url: "http://localhost:3000/api/monitor/latest/",
+        success: function (data) {
+          console.log(data[0])
+            document.getElementById("humidity").innerHTML = data[0].humidity;
+            document.getElementById("temp").innerHTML = data[0].temperature;
+            document.getElementById("ethanol").innerHTML = data[0].analog1;
+            document.getElementById("methane").innerHTML = data[0].analog2;
+            document.getElementById("cam").innerHTML = data[0].camera_state;
+          if ((parseFloat(data[0].analog1) < 190) || (parseInt(data[0].camera_state) == 0)) {
+            document.getElementById("fresh").style.display = "flex";
+            document.getElementById("spoiled").style.display = "none";
+          } else {
+            document.getElementById("fresh").style.display = "none";
+            document.getElementById("spoiled").style.display = "flex";
+          }
+        }
+      });
+    }, 5000);//time 
+  </script>
 </body>
+
 </html>
