@@ -99,7 +99,8 @@
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
-    setInterval(function () {
+
+    function getData() {
       $.ajax({
         type: "get",
         url: "http://localhost:3000/api/monitor/latest/",
@@ -119,6 +120,11 @@
           }
         }
       });
+    }
+
+    getData();
+    setInterval(function () {
+      getData();
     }, 5000);//time 
   </script>
 </body>
