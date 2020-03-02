@@ -111,7 +111,7 @@
             document.getElementById("ethanol").innerHTML = data[0].analog1;
             document.getElementById("methane").innerHTML = data[0].analog2;
             document.getElementById("cam").innerHTML = data[0].camera_state;
-          if ((parseFloat(data[0].analog1) < 190) || (parseInt(data[0].camera_state) == 0)) {
+          if ((parseFloat(data[0].analog1) < 190) && (parseInt(data[0].camera_state) == 0) && ((parseFloat(data[0].humidity) < 80))) {
             document.getElementById("fresh").style.display = "flex";
             document.getElementById("spoiled").style.display = "none";
           } else {
